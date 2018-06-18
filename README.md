@@ -1,12 +1,12 @@
-# NER_keras_tensorflow
+## NER_keras_tensorflow
 
 Notebook in progress. NER model using Keras on tensorflow
 
-# Background
+## Background
 
-Recreating a NER model in keras, inspired by the architecture of Guillaume Genthial's NER model in [tensorflow] (https://github.com/guillaumegenthial/sequence_tagging/). 
+Recreating a NER model in keras, inspired by the architecture of Guillaume Genthial's NER model in (tensorflow) [https://github.com/guillaumegenthial/sequence_tagging/]. 
 
-# Data
+## Data
 
 CONLL dataset
 - downloaded and saved in notebook as train, dev and test.
@@ -24,10 +24,10 @@ CONLL dataset
    'I-PER': 2,
    'O': 0
 
-# Network Architecture and Hyperparameters
+## Network Architecture and Hyperparameters
 
 Network takes in word embeddings and character embeddings, which have gone through forward and backward LSTMs, and then concatenates both and puts them through forward and backward LSTMs and then goes through a softmax activation function. The model is compiled with an Adam optimizer and categorical crossentropy for loss.
-
+```
 Layer (type)                    Output Shape         Param #     Connected to                     
 ==================================================================================================
 input_2 (InputLayer)            (None, None, None)   0                                            
@@ -79,8 +79,8 @@ Total params: 1,858,910
 Trainable params: 1,852,010
 Non-trainable params: 6,900
 __________________________________________________________________________________________________
-
-The best results so far were:
+```
+The best results so far are:
 
 - Training:
   {'precision': 0.8522053133866392}
@@ -102,15 +102,15 @@ The best results so far were:
   
 This was achieved on 100 epochs, with a learning rate of 0.0105, a learning rate decay of 0.0005, a batch size of 10 and the dev data used as validation_data when calling model.fit. These weights were saved as "softmax_test_6_3.hdf5".
 
-# Evaluate
+## Evaluate
 
 Evaluation was done similar to the Stanford NER evaluation technique, which uses chunking. Currently this process falls under three functions 'extract_data()', 'predict_labels()', and 'compute_metrics()'. This process trims the data to its original, unpadded size and then evaluates where the "chunks" with the named entity recognition are and if the predicted labeled chunks are correct in relation to the labelled data set. F1 and accuracy are used for evaluation, though F1 is used primarily. 
 
-# Experiments up to 6/18/18
+## Experiments up to 6/18/18
 
 All of my experiments from 3/18/18 to 6/18/18 are available in this github under "experiments".
 
-# Next Steps
+## Next Steps
 
 Areas where there is room to improve:
 
