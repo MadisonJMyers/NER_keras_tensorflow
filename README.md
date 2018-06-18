@@ -4,7 +4,7 @@ Notebook in progress. NER model using Keras on tensorflow
 
 ## Background
 
-Recreating a NER model in keras, inspired by the architecture of Guillaume Genthial's NER model in (tensorflow) [https://github.com/guillaumegenthial/sequence_tagging/]. 
+Recreating a NER model in keras, inspired by the architecture of Guillaume Genthial's NER model in [tensorflow](https://github.com/guillaumegenthial/sequence_tagging/). 
 
 ## Data
 
@@ -14,6 +14,7 @@ CONLL dataset
 - Vocab words (vocab_words) from data/words.txt composed of 23 unique words.
 - Vocab characters (vocab_chars) under data/chars.txt composed of 28 unique characters.
 - Vocab tags (vocab_tags) under data/tags.txt composed of 9 unique tags associated with numbers 0-8. See below:
+  ```
   'B-LOC': 7,
    'B-MISC': 3,
    'B-ORG': 5,
@@ -23,7 +24,7 @@ CONLL dataset
    'I-ORG': 6,
    'I-PER': 2,
    'O': 0
-
+  ```
 ## Network Architecture and Hyperparameters
 
 Network takes in word embeddings and character embeddings, which have gone through forward and backward LSTMs, and then concatenates both and puts them through forward and backward LSTMs and then goes through a softmax activation function. The model is compiled with an Adam optimizer and categorical crossentropy for loss.
@@ -83,23 +84,23 @@ ________________________________________________________________________________
 The best results so far are:
 
 - Training:
+```
   {'precision': 0.8522053133866392}
   {'recall': 0.8436103663985701}
-  {'total_correct': 23499.0}
   {'acc': 97.4815957096763, 'f1': 84.78860588952332}
-
+```
 - Validation:
+```
   {'precision': 0.7701129750085587}
   {'recall': 0.7571524739145069} 
-  {'total_correct': 5942.0}
   {'acc': 95.72641252287684, 'f1': 76.35777325186693}
-
+```
 - Test:
+```
   {'precision': 0.7235902926481085}
   {'recall': 0.7179532577903682}
-  {'total_correct': 5648.0}
   {'acc': 94.57090556692151, 'f1': 72.07607536437965}
-  
+```  
 This was achieved on 100 epochs, with a learning rate of 0.0105, a learning rate decay of 0.0005, a batch size of 10 and the dev data used as validation_data when calling model.fit. These weights were saved as "softmax_test_6_3.hdf5".
 
 ## Evaluate
